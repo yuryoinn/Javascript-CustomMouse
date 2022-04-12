@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick & Morty CustomMouse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        window.onload = function () {
+
+            var mouseCursor = document.querySelector(".cursor");
+            var follower = document.querySelector(".cursor_follower");
+            var firstMenu = document.querySelectorAll("#menu1");
+            var secondMenu = document.querySelectorAll("#menu2");
+            var thirdMenu = document.querySelectorAll("#menu3");
+            var fourthMenu = document.querySelectorAll("#menu4");
+            
+
+            firstMenu.forEach(function(menu) {
+                console.log(menu);
+                menu.addEventListener("mouseover", function() {
+                    mouseCursor.classList.add("menu1");
+                })
+                menu.addEventListener("mouseleave", function() {
+                    mouseCursor.classList.remove("menu1");
+                })
+            });
+
+            secondMenu.forEach(function(menu) {
+                console.log(menu);
+                menu.addEventListener("mouseover", function() {
+                    mouseCursor.classList.add("menu2");
+                })
+                menu.addEventListener("mouseleave", function() {
+                    mouseCursor.classList.remove("menu2");
+                })
+            });
+
+            thirdMenu.forEach(function(menu) {
+                console.log(menu);
+                menu.addEventListener("mouseover", function() {
+                    mouseCursor.classList.add("menu3");
+                })
+                menu.addEventListener("mouseleave", function() {
+                    mouseCursor.classList.remove("menu3");
+                })
+            });
+
+            fourthMenu.forEach(function(menu) {
+                console.log(menu);
+                menu.addEventListener("mouseover", function() {
+                    mouseCursor.classList.add("menu4");
+                })
+                menu.addEventListener("mouseleave", function() {
+                    mouseCursor.classList.remove("menu4");
+                })
+            });
+
+            function myCursor(e){
+                mouseCursor.style.left = e.pageX + "px";
+                mouseCursor.style.top = e.pageY + "px";
+                gsap.to(follower, {duration: 0.5, left: e.pageX - 15, top: e.pageY - 15 });
+            }
+            window.addEventListener("mousemove", myCursor);
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            cursor: none;
+        }
+        body {
+            background-image: url(./image/rickworld.jpeg);
+            background-size: cover;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            font-family: 'Poppins', sans-serif;
+            cursor: none;
+        }
+        #fullpage {
+            width: 1500px;
+            height: 100%;
+            margin: 0 auto;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .cursor {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            /* background-color: blue; */
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            transform: translate(-50%, -50%);
+            transform-origin: 100% 100%;
+            transition: all 0.3s ease;
+            transition-property: background, transform;
+            /* backdrop-filter: grayscale(); */
+            backdrop-filter: blur(3px);
+        }
+        .cursor_follower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            user-select: none;
+            pointer-events: none;
+            transition: transform 0.6s ease-in-out, opacity 0.2s ease-in-out;
+        }
+        .menu1 {
+            background-color: #EC449B;
+            transform: scale(2);
+            border: none;
+            cursor: none;
+        }
+        .menu2 {
+            background-color: #CCF381;
+            transform: scale(2);
+            border: none;
+            cursor: none;
+        }
+        .menu3 {
+            background-color: #A04EF6;
+            transform: scale(2);
+            border: none;
+            cursor: none;
+        }
+        .menu4 {
+            background-color: #00539C;
+            transform: scale(2);
+            border: none;
+            cursor: none;
+        }
+        #menu1 a:hover {
+            color: #99F443;
+        }
+        #menu2 a:hover {
+            color: #4831D4;
+        }
+        #menu3 a:hover {
+            color: #C7D3D4;
+        }
+        #menu4 a:hover {
+            color: #FFD662;
+        }
+        #logo a {
+            font-size: 35px;
+
+        }
+        .gnbMenu {
+            display: flex;
+        }
+        .gnbMenu a {
+            font-size: 20px;
+        }
+        .gnbMenu li {
+            padding: 0 20px;
+            margin: 0 50px;
+            list-style: none;
+        }
+        .link_hover {
+            transform: scale(2);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #profileSection {
+            margin-top: 70px;
+            margin-left: 25px;
+        }
+        #profileSection h2 {
+            width: 250px;
+            border-top: 3px solid #fff;
+            color: #fff;
+            font-size: 40px;
+        }
+        .profile-img {
+            display: block;
+            position: relative;
+            z-index: -3;
+            margin: 0 auto;
+        }
+        .profile-text {
+            position: absolute;
+            top: 250px;
+            left: 500px;
+        }
+        .profile-text a {
+            color: #fff;
+            display: block;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor_follower"></div>
+    <div id="fullpage">
+        <header>
+            <nav>
+                <h1 id="logo"><a href="">Rick and Morty</a></h1>
+                <ul class="gnbMenu">
+                    <li id="menu1">
+                        <a href="">rick</a>
+                    </li>
+                    <li id="menu2">
+                        <a href="">morty</a>
+                    </li>
+                    <li id="menu3">
+                        <a href="">story</a>
+                    </li>
+                    <li id="menu4">
+                        <a href="">world</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    
+        <section id="profileSection">
+            <img src="./image/rick.png" alt="프로필 이미지" class="profile-img">
+            <div class="profile-text">
+                <h2>Rick</h2>
+                <p>
+                    <a href="mailto:yuryoinn88@gmail.com">Mail: yuryoinn98@kaywon.ac.kr</a>
+                    <a href="#">www.ricknmorty.com</a>
+                </p>
+            </div>
+        </section>
+    
+        <footer>
+            <address></address>
+        </footer>
+    </div>
+</body>
+</html>
